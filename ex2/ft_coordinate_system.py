@@ -3,10 +3,11 @@
 Exercise 2: Position Tracker
 3D coordinate system using tuples.
 """
+import sys
 import math
 
 
-def ft_coordinate_system():
+def ft_coordinate_system(coord_strings: list[str]):
     """Demonstrate tuple operations with 3D coordinates."""
     print("=== Game Coordinate System ===\n")
     position0 = (0, 0, 0)
@@ -15,11 +16,12 @@ def ft_coordinate_system():
     x2, y2, z2 = position1
     distance = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
     print(
-        f"position created: {position1}\n"
+        f"Position created: {position1}\n"
         f"Distance between {position0} and {position1}: "
         f"{distance:.2f}\n"
     )
-    coord_strings = ["3,4,0", "abc,def,ghi"]
+    if not coord_strings:
+        coord_strings = ["3,4,0", "abc,def,ghi"]
     for coord in coord_strings:
         try:
             coords = coord.split(',')
@@ -34,12 +36,11 @@ def ft_coordinate_system():
                 f"Distance between {position0} and {position2}: "
                 f"{distance:.2f}\n"
             )
-        except ValueError as e:
+        except Exception as e:
             print(
                 f'Parsing invalid coordinates: "{coord}"\n'
                 f"Error parsing coordinates: {e}\n"
                 f"Error details - Type: {type(e).__name__}, Args: {e.args}\n"
-
             )
     position3 = (3, 4, 0)
     x, y, z = position3
@@ -51,4 +52,4 @@ def ft_coordinate_system():
 
 
 if __name__ == "__main__":
-    ft_coordinate_system()
+    ft_coordinate_system(sys.argv[1:])
